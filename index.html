@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сесто Сенсо - Ресторан итальянской кухни</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка сайта */
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        
+        .logo span {
+            color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #d4af37;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #d4af37;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #b8941f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        /* Обновленная герой-секция с фоном */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding-top: 80px;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Остальные стили остаются без изменений */
+        /* О ресторане */
+        .about {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: #d4af37;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Галерея */
+        .gallery {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Меню */
+        /* Меню */
+.menu {
+    padding: 100px 0;
+    background-color: white;
+}
+
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.menu-item {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.menu-item:hover {
+    transform: translateY(-10px);
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.menu-item:hover .menu-item-image img {
+    transform: scale(1.1);
+}
+
+.menu-item-content {
+    padding: 20px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-item h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.menu-item p {
+    color: #777;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.price {
+    font-weight: 700;
+    color: #d4af37;
+    font-size: 18px;
+}
+        
+        /* Контакты */
+        .contact {
+            padding: 100px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .contact-item {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .contact-item i {
+            font-size: 40px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        /* Модальное окно бронирования */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .modal-icon {
+            font-size: 60px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+        
+        .modal h2 {
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .modal p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .phone-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d4af37;
+            margin: 20px 0;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #bbb;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #d4af37;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #d4af37;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #1a1a1a;
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                height: 70vh;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 16px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Сесто <span>Сенсо</span></div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+       <!-- Герой-секция -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Сесто Сенсо</h1>
+            <p>Изысканная итальянская кухня в самом сердце города</p>
+            <a href="#contact" class="btn" id="reserve-btn">Забронировать стол</a>
+        </div>
+        <!-- Фоновое изображение -->
+        <div class="hero-bg">
+            <img src="photos/XXXL (1).webp" alt="Фоновое изображение ресторана">
+        </div>
+    </section>
+
+    <!-- О ресторане -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>О нашем ресторане</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Наша история</h3>
+                    <p>Сесто Сенсо — это место, где встречаются традиции и инновации итальянской кухни. Наш ресторан был основан в 2010 году семьей итальянских шеф-поваров, которые привезли с собой секреты настоящей средиземноморской кухни.</p>
+                    <p>Мы тщательно отбираем только самые свежие и качественные ингредиенты, многие из которых импортируются непосредственно из Италии. Наша команда поваров создает блюда, которые поражают своим вкусом и эстетикой.</p>
+                    <p>В нашем ресторане царит уютная и романтическая атмосфера, идеально подходящая для ужина с близкими, деловых встреч или празднования особых событий.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Интерьер ресторана">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Галерея</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="photos/XXXL.webp" alt="Блюда ресторана">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/XXXL (1).webp" alt="Интерьер ресторана">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/XXXL (2).webp" alt="Шеф-повар">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/XXXL (3).webp" alt="Коктейли">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/XXXL (4).webp" alt="Десерты">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/XXXL (5).webp" alt="Веранда ресторана">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/XXXL (6).webp" alt="Зал ресторана">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/XXXL (7).webp" alt="Зал ресторана">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/XXXL (8).webp" alt="Зал ресторана">
+                </div>
+        </div>
+    </section>
+
+    <!-- Меню -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наше меню</h2>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="photos/margarita.jpg" alt="Маргарита">
+                    <div class="menu-item-content">
+                        <h3>Маргарита</h3>
+                        <p>Хрустящее тесто снаружи скрывает сочную начинку из моцареллы, томатного соуса и ветчины. Идеально подходит для еды на ходу — весь сок и аромат остаются внутри!</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="photos/kalcona.jpg" alt="Кальцоне">
+                    <div class="menu-item-content">
+                        <h3>Кальцоне</h3>
+                        <p>Хрустящее тесто снаружи скрывает сочную начинку из моцареллы, томатного соуса и ветчины. Идеально подходит для еды на ходу — весь сок и аромат остаются внутри!</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/4 sira.jpg" alt="Пицца 4 сыра">
+                    <div class="menu-item-content">
+                        <h3>Пицца 4 сыра</h3>
+                        <p>Это гармония сливочных вкусов без единого кусочка помидора. Классическое сочетание четырёх сыров: нежная моцарелла, пикантный горгонзола (с плесенью), насыщенный пармезан и сливочный фонтина. Идеальный выбор для ценителей сырного богатства и изысканной простоты.</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/cezar.jpg" alt="Пицца Цезарь">
+                    <div class="menu-item-content">
+                        <h3>Пицца Цезарь</h3>
+                        <p>Ваш любимый салат в формате горячей пиццы! Нежная курица, хрустящий салат романо, соус «Цезарь» и пармезан на воздушном тесте. Идеальное сочетание свежести и сытности.</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/grusagorg.jpg" alt="Пицца с грушей и горгонзолой">
+                    <div class="menu-item-content">
+                        <h3>Пицца с грушей и горгонзолой</h3>
+                        <p>Изысканное сочетание сладкого и солёного. Нежные дольки груши, пикантная горгонзола с плесенью, тягучая моцарелла и хрустящие орехи на воздушном тесте. Гастрономический восторг для ценителей необычных вкусов</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/sesto senso.jpg" alt="Пицца Сесто-Сенсо">
+                    <div class="menu-item-content">
+                        <h3>Пицца Сесто-Сенсо</h3>
+                        <p>Элегантная простота итальянской кухни. Нежная моцарелла, томатная основа, украшенные ароматными ломтиками пармской ветчиной. Идеальный баланс нежности, солоноватой пикантности и лёгкой пряной горчинки</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/vetchina.jpg" alt="Пицца с ветчиной">
+                    <div class="menu-item-content">
+                        <h3>Пицца с ветчиной</h3>
+                        <p>Классика для любителей сытного и понятного вкуса. Ароматная ветчина и нежная моцарелла на томатной основе, дополненные грибами. Просто, вкусно и по-домашнему уютно! </p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/s tuncom.jpg" alt="Пицца с тунцом">
+                    <div class="menu-item-content">
+                        <h3>Пицца с тунцом</h3>
+                        <p>Свежий и сытный вкус моря на воздушном тесте. Нежный тунец, расплавленный сыр и лук создают гармоничную комбинацию. Идеальный выбор для тех, кто любит насыщенный и необычный вкус!</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/pizza brbrq.jpg" alt="Пицца barbeque">
+                    <div class="menu-item-content">
+                        <h3>Пицца barbeque</h3>
+                        <p>Дерзкий вкус на мангале в формате пиццы! Копчёный соус барбекю, сочная курица, хрустящий красный лук и нежная моцарелла на воздушной основе. Для тех, кто любит смелые и насыщенные сочетания</p>
+                        <div class="price">720 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/ovoshnaja.jpg" alt="Пицца овощная">
+                    <div class="menu-item-content">
+                        <h3>Пицца овощная</h3>
+                        <p>яркий праздник свежести и пользы! Цветной перец, сочные томаты, хрустящий лук, шампиньоны и маслины на нежной моцарелле. Лёгкая, ароматная и заряжает хорошим настроением. Для тех, кто ценит гармонию вкуса и пользу.</p>
+                        <div class="price">480 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/peperoni.jpg" alt="Пицца пепперони">
+                    <div class="menu-item-content">
+                        <h3>Пицца пепперони</h3>
+                        <p>Самая популярная острая классика! Острые колбаски пепперони, которые в духовке покрываются хрустящими «лодочками» из жира, и тягучая моцарелла на томатном соусе. Просто, сытно и с огоньком!</p>
+                        <div class="price">320 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/mesnayatarelka.jpg" alt="Мясная тарелка">
+                    <div class="menu-item-content">
+                        <h3>Мясная тарелк</h3>
+                        <p>Настоящий пир для ценителей! Ассорти из лучших мясных деликатесов: ароматная пармская ветчина, пикантная салями, нежная брезаола и другие копчености. Идеально к пиву или в качестве сытной закуски</p>
+                        <div class="price">580 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/losos.jpg" alt="Стейк из лосося">
+                    <div class="menu-item-content">
+                        <h3>Стейк из лосося</h3>
+                        <p>Нежное и сочное блюдо для истинных гурманов. Свежее филе с золотистой корочкой, приготовленное в духовке, сохраняет свой насыщенный вкус и полезные свойства. Подается с легким соусом и гарниром из овощей. Утонченно, полезно и безумно вкусно.</p>
+                        <div class="price">890 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/siri.jpg" alt="Сырная тарелка">
+                    <div class="menu-item-content">
+                        <h3>Сырная тарелка</h3>
+                        <p>Настоящее раздолье для гурманов! Богатая коллекция отборных сыров от нежных до выдержанных: кремовая моцарелла, насыщенный горгонзола с благородной плесенью, пряный чеддер и ароматный бри. Изысканное начало трапезы или самостоятельное наслаждение.</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="photos/sup.jpg" alt="Суп с тыквой">
+                    <div class="menu-item-content">
+                        <h3>Суп с тыквой</h3>
+                        <p>Бархатное осеннее наслаждение в чашке! Нежнейшее пюре из запеченной тыквы со сливками и имбирем, согревающее карри и ноткой мускатного ореха.Уют, тепло и гармония вкуса в каждой ложке.</p>
+                        <div class="price">650 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Контакты</h2>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Адрес</h3>
+                    <p>Новоспасский переулок, 3к1<br>Москва, Россия</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>+7 (495) 911-36-53</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Часы работы</h3>
+                    <p>Пн-Вс: 10:00 - 23:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно бронирования -->
+    <div class="modal" id="reservation-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-phone-alt"></i>
+            </div>
+            <h2>Забронировать стол</h2>
+            <p>Для бронирования столика в нашем ресторане, пожалуйста, позвоните по номеру телефона:</p>
+            <div class="phone-number">+7 (495) 911-36-53</div>
+            <p>Наш администратор поможет вам выбрать подходящее время и ответит на все ваши вопросы.</p>
+            <button class="btn" id="close-modal-btn">Понятно</button>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Сесто Сенсо</h3>
+                    <p>Изысканная итальянская кухня в самом сердце города. Мы предлагаем уникальные блюда, приготовленные с любовью и вниманием к деталям.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Новоспасский пер., 3, корп. 1, Москва</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 911-36-53</p>
+                    <p><i class="fas fa-envelope"></i> info@sestosenso.ru</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Часы работы</h3>
+                    <p>Понедельник - Воскресенье: 10:00 - 23:00</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Сесто Сенсо. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Модальное окно бронирования
+        const reserveBtn = document.getElementById('reserve-btn');
+        const modal = document.getElementById('reservation-modal');
+        const closeModal = document.getElementById('close-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        
+        reserveBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        // Закрытие модального окна при клике вне его
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Плавная прокрутка для навигационных ссылок
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Закрытие мобильного меню после клика
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+
+        // Предзагрузка изображений для лучшей производительности
+        window.addEventListener('load', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.setAttribute('loading', 'lazy');
+            });
+        });
+    </script>
+</body>
+</html>
